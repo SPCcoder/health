@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18EA810C1FD86B730016177C /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA810A1FD86B730016177C /* User+CoreDataClass.swift */; };
+		18EA810D1FD86B730016177C /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EA810B1FD86B730016177C /* User+CoreDataProperties.swift */; };
 		18EFBFAC1FD861AB006C6434 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFBFAB1FD861AB006C6434 /* AppDelegate.swift */; };
 		18EFBFAE1FD861AB006C6434 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EFBFAD1FD861AB006C6434 /* ViewController.swift */; };
 		18EFBFB11FD861AB006C6434 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EFBFAF1FD861AB006C6434 /* Main.storyboard */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18EA810A1FD86B730016177C /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		18EA810B1FD86B730016177C /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		18EFBFA81FD861AB006C6434 /* TicTrac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTrac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18EFBFAB1FD861AB006C6434 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18EFBFAD1FD861AB006C6434 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		18EFBFAA1FD861AB006C6434 /* TicTrac */ = {
 			isa = PBXGroup;
 			children = (
+				18EA810A1FD86B730016177C /* User+CoreDataClass.swift */,
+				18EA810B1FD86B730016177C /* User+CoreDataProperties.swift */,
 				18EFBFAB1FD861AB006C6434 /* AppDelegate.swift */,
 				18EFBFAD1FD861AB006C6434 /* ViewController.swift */,
 				18EFBFAF1FD861AB006C6434 /* Main.storyboard */,
@@ -222,6 +228,8 @@
 			files = (
 				18EFBFAE1FD861AB006C6434 /* ViewController.swift in Sources */,
 				18EFBFB41FD861AB006C6434 /* TicTrac.xcdatamodeld in Sources */,
+				18EA810C1FD86B730016177C /* User+CoreDataClass.swift in Sources */,
+				18EA810D1FD86B730016177C /* User+CoreDataProperties.swift in Sources */,
 				18EFBFAC1FD861AB006C6434 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
