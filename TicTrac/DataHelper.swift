@@ -2,7 +2,7 @@
 //  DataHelper.swift
 //  TicTrac
 //
-//  Created by Apple on 06/12/2017.
+//  Created by Sean on 06/12/2017.
 //  Copyright © 2017 com.spcarlin. All rights reserved.
 //
 
@@ -13,6 +13,7 @@ import CoreData
 protocol updateUIProtocol { // we're using this as an easy way to update the UI in our VC
     func updateUI()
 }
+// MARK: -
 class DataHelper { // this class helps clean up the view controller. I didn't have a seperate 'webservice helper' class just to save time
  
     let urlString = "http://media.tictrac.com/tmp/users.json" // the VC doesn't need to know about this so its here
@@ -29,8 +30,8 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
         }
         self.loadFromStore()
     }
-    
-    public func loadFromStore(){
+    // MARK: - Core Data
+     func loadFromStore(){
         
         var managedObjsArray : [User] = []
             let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -48,6 +49,23 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
 
     }
     
+    func deleteOldData(){
+        //delete existing users, we have the new users that will replace them
+        for userMO in self.userArray {
+            self.managedObjectContext?.delete(userMO)
+            self.saveData()
+            
+        }
+    }
+    
+    func saveData(){
+        do {
+            try self.managedObjectContext?.save()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    // MARK: -
     public func getJSON(){
         let utilityQueue = DispatchQueue.global(qos: .utility)
         
@@ -63,13 +81,19 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
                     if let usersArray = mainDict["users"] as? Array<Any>{
                         //print(usersArray)
                         
-                        //Since CRUD is not in the spec, we'll assume the json always gives us the most up to date version of the users, so we delete the ones stored locally
+                        /*Since CRUD is not in the spec, we'll assume the json always
+                         gives us the most up to date version of the users,
+                         so we delete the ones stored locally */
                         for userMO in self.userArray {
                             if let managedObject = userMO as? NSManagedObject {
                                 
                                     self.deleteOldData()
                             }
                         }
+                        self.userArray.removeAll()
+                        
+                       // print("DH array count: \(self.userArray.count)")
+                        
                         for user in usersArray {
                             if let userD = user as? [AnyHashable: Any] {
                                 //here we create new managed objects from our JSON. We'll load these next time the app launches while we wait for the web call to give us new data
@@ -84,6 +108,7 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
                                 }
                             }
                         }
+                        print("DH array count: \(self.userArray.count)")
                     }
                     //replace any existing MOs
                     //update UI
@@ -98,20 +123,5 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
             }
         }
     }
-    func deleteOldData(){
-        //delete existing users, we have the new users that will replace them
-        for userMO in self.userArray {
-            if let managedObject = userMO as? NSManagedObject {
-                self.managedObjectContext?.delete(managedObject)
-                self.saveData()
-            }
-        }
-    }
-    func saveData(){
-        do {
-            try self.managedObjectContext?.save()
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
+    
 }

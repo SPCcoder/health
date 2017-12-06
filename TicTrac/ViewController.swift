@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  TicTrac
 //
-//  Created by Apple on 06/12/2017.
+//  Created by Sean on 06/12/2017.
 //  Copyright © 2017 com.spcarlin. All rights reserved.
 //
 /* TASK
@@ -23,14 +23,10 @@
  - Good quality of code: readable, maintainable, structured
  */
 
-/*where im at:
- - got data in table view - need expandable cells
- - put tableview code into extension
- 
- */
 import UIKit
-
 // VC doesnt need to know about core data or Alamofire so we don't import them
+
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateUIProtocol {
     
@@ -38,6 +34,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
     var dataHelper = DataHelper() // this class
     var userArray : [User] = [] // this will store the user's we'll display, this can be populated from the core data store or the web call
+    
+    // MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +61,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
-    //TODO: use extension for table view
+    // MARK: - Table View
+    //There's no benefit to using an extension for table view delegate funcs at this point
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("self.userArray.count: \(self.userArray.count)")
         return self.userArray.count
