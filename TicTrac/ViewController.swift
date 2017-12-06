@@ -20,11 +20,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataHelper.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         userArray = dataHelper.loadFromStore()
         getJSON()
     }
     func updateUI() {
+        self.userArray = dataHelper.userArray
         self.userTableView.reloadData()
     }
     fileprivate func getJSON() {

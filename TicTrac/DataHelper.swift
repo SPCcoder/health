@@ -16,6 +16,7 @@ class DataHelper {
     
     var managedObjectContext : NSManagedObjectContext?
     var delegate : updateUIProtocol?
+    public var userArray : [User] = []
     init(){
     
         if let appDel = UIApplication.shared.delegate as? AppDelegate  {
@@ -75,6 +76,12 @@ class DataHelper {
                                     newUser.number = userD["infos"] as? String
                                     // try self.managedObjectContext!.save()
                                     
+                                    do {
+                                        try self.managedObjectContext?.save()
+                                        self.userArray.append(newUser)
+                                    } catch {
+                                        print(error.localizedDescription)
+                                    }
                                 }
                             }
                         }
