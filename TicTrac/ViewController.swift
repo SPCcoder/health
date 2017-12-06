@@ -13,7 +13,8 @@ import CoreData
 let urlString = "http://media.tictrac.com/tmp/users.json"
 class ViewController: UIViewController {
     fileprivate var managedObjectContext : NSManagedObjectContext?
-
+var dataHelper = DataHelper()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,17 +28,8 @@ class ViewController: UIViewController {
 
     fileprivate func getJSON() {
 
-        let utilityQueue = DispatchQueue.global(qos: .utility)
-        
-        Alamofire.request(urlString).responseJSON(queue: utilityQueue) { response in
-            print("Executing response handler on utility queue")
-            switch response.result {
-            case .success:
-                print("Validation Successful")
-            case .failure(let error):
-                print(error)
-            }
-        }
+        dataHelper.getJSONFor(urlString: urlString)
+
         
     }
 
