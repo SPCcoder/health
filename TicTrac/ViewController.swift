@@ -26,12 +26,18 @@
 import UIKit
 // VC doesnt need to know about core data or Alamofire so we don't import them
 
-
-
+//Constants
+// Normally I'd put these in their own file but they're ok here for now
+let KEY_NAME = "name"
+let KEY_NUMBER = "infos"
+let KEY_EMAIL = "email"
+let KEY_USER = "user"
+let KEY_USER_CELL = "UserCell"
+// MARK: -
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateUIProtocol {
     
     @IBOutlet weak var userTableView: UITableView!
-   
+    
     var dataHelper = DataHelper() // this class
     var userArray : [User] = [] // this will store the user's we'll display, this can be populated from the core data store or the web call
     
@@ -41,10 +47,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         dataHelper.delegate = self //set VC as delegate to update the UI
-       // userArray = dataHelper.loadFromStore()
+        // userArray = dataHelper.loadFromStore()
         if userArray.count > 0 {
             self.userTableView.reloadData()
-
+            
         }
         
         getJSON()
@@ -55,7 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.userTableView.reloadData() // since we updated our tableview data source we update the tableview to show changes
     }
     
-     func getJSON() {
+    func getJSON() {
         // with bigger data, we might put up an activity indicator to let the user know the app is working on something
         dataHelper.getJSON()
         
@@ -69,7 +75,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as? UserTableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: KEY_USER_CELL) as? UserTableViewCell {
             cell.nameLabel.text = self.userArray[indexPath.row].name
             cell.emailLabel.text = self.userArray[indexPath.row].email
             cell.numberLabel.text = self.userArray[indexPath.row].number
