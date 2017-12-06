@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import CoreData
+
 protocol updateUIProtocol {
     func updateUI()
 }
@@ -17,6 +18,7 @@ class DataHelper {
     var managedObjectContext : NSManagedObjectContext?
     var delegate : updateUIProtocol?
     public var userArray : [User] = []
+    
     init(){
     
         if let appDel = UIApplication.shared.delegate as? AppDelegate  {
@@ -25,30 +27,21 @@ class DataHelper {
         }
         
     }
+    
     public func loadFromStore()->[User]{
-//        DispatchQueue.global(qos: .userInteractive).async {
+        
         var managedObjsArray : [User] = []
-            //fetch objects
             let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
             
             let error = NSError()
             do {
                  managedObjsArray = try self.managedObjectContext?.fetch(fetchReq) as! [User]
-                // self.myTableView.reloadData()
-//                DispatchQueue.main.async {
-//                    return managedObjsArray
-//
-//                }
+
             } catch {
                 print("array not populated")
                 print(error)
-//                DispatchQueue.main.async {
-//                    return [User]()
-//
-//                }
-                
+  
             }
-     //   }
         
         return managedObjsArray
     }
@@ -66,7 +59,12 @@ class DataHelper {
                 if let mainDict = response.result.value as? [String : Any] {
                     print(mainDict)
                     if let usersArray = mainDict["users"] as? Array<Any>{
-                        print(usersArray)
+                        //print(usersArray)
+                        
+                        //delete existing users
+//                        for managedObject in self.userArray {
+//                        self.managedObjectContext?.delete(managedObject as! NSManagedObject)
+//                        }
                         for user in usersArray {
                             if let userD = user as? [AnyHashable: Any] {
                               
