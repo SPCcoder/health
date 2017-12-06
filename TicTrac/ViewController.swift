@@ -25,29 +25,25 @@
 
 /*where im at:
  - got data in table view - need expandable cells
- - core data subclass works, need to fecth exisiting data
  - put tableview code into extension
- - got json, but should use promisekit/alamo fire for asynchronous coding
  
  */
 import UIKit
-import Alamofire
-//import CoreData
 
-let urlString = "http://media.tictrac.com/tmp/users.json"
+// VC doesnt need to know about core data or Alamofire so we don't import them
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateUIProtocol {
     
     @IBOutlet weak var userTableView: UITableView!
    
-    var dataHelper = DataHelper()
-    var userArray : [User] = []
+    var dataHelper = DataHelper() // this class
+    var userArray : [User] = [] // this will store the user's we'll display, this can be populated from the core data store or the web call
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataHelper.delegate = self
-        // Do any additional setup after loading the view, typically from a nib.
-        userArray = dataHelper.loadFromStore()
+        
+        dataHelper.delegate = self //set VC as delegate to update the UI
+       // userArray = dataHelper.loadFromStore()
         if userArray.count > 0 {
             self.userTableView.reloadData()
 
@@ -57,12 +53,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func updateUI() {
-        self.userArray = dataHelper.userArray
-        self.userTableView.reloadData()
+        self.userArray = dataHelper.userArray // update VC array from data helper
+        self.userTableView.reloadData() // since we updated our tableview data source we update the tableview to show changes
     }
     
-    fileprivate func getJSON() {
-        dataHelper.getJSONFor(urlString: urlString)
+     func getJSON() {
+        // with bigger data, we might put up an activity indicator to let the user know the app is working on something
+        dataHelper.getJSON()
         
     }
     
