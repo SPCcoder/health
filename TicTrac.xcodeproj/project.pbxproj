@@ -13,6 +13,7 @@
 		18EFBFB41FD861AB006C6434 /* TicTrac.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18EFBFB21FD861AB006C6434 /* TicTrac.xcdatamodeld */; };
 		18EFBFB61FD861AB006C6434 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18EFBFB51FD861AB006C6434 /* Assets.xcassets */; };
 		18EFBFB91FD861AB006C6434 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18EFBFB71FD861AB006C6434 /* LaunchScreen.storyboard */; };
+		BAC7A15254AD588A351F7AA2 /* Pods_TicTrac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6A7103BCB5AA14EB4AACB2 /* Pods_TicTrac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,9 @@
 		18EFBFB51FD861AB006C6434 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18EFBFB81FD861AB006C6434 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18EFBFBA1FD861AB006C6434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		26E79FB9D6258435901CB452 /* Pods-TicTrac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TicTrac.release.xcconfig"; path = "Pods/Target Support Files/Pods-TicTrac/Pods-TicTrac.release.xcconfig"; sourceTree = "<group>"; };
+		2B7F924BB85417B6AD954A5E /* Pods-TicTrac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TicTrac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TicTrac/Pods-TicTrac.debug.xcconfig"; sourceTree = "<group>"; };
+		4F6A7103BCB5AA14EB4AACB2 /* Pods_TicTrac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TicTrac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAC7A15254AD588A351F7AA2 /* Pods_TicTrac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1697D226521208D95A347808 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B7F924BB85417B6AD954A5E /* Pods-TicTrac.debug.xcconfig */,
+				26E79FB9D6258435901CB452 /* Pods-TicTrac.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		18EFBF9F1FD861AB006C6434 = {
 			isa = PBXGroup;
 			children = (
 				18EFBFAA1FD861AB006C6434 /* TicTrac */,
 				18EFBFA91FD861AB006C6434 /* Products */,
+				1697D226521208D95A347808 /* Pods */,
+				30392518BB2F4D98D32F9879 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +83,14 @@
 			path = TicTrac;
 			sourceTree = "<group>";
 		};
+		30392518BB2F4D98D32F9879 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F6A7103BCB5AA14EB4AACB2 /* Pods_TicTrac.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18EFBFBD1FD861AB006C6434 /* Build configuration list for PBXNativeTarget "TicTrac" */;
 			buildPhases = (
+				F5FE076062D926D141246FE3 /* [CP] Check Pods Manifest.lock */,
 				18EFBFA41FD861AB006C6434 /* Sources */,
 				18EFBFA51FD861AB006C6434 /* Frameworks */,
 				18EFBFA61FD861AB006C6434 /* Resources */,
+				C4A306AE0CC516AF0CA029DA /* [CP] Embed Pods Frameworks */,
+				97D106995520AB9F3E0691BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -133,6 +160,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		97D106995520AB9F3E0691BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TicTrac/Pods-TicTrac-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4A306AE0CC516AF0CA029DA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TicTrac/Pods-TicTrac-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TicTrac/Pods-TicTrac-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5FE076062D926D141246FE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TicTrac-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18EFBFA41FD861AB006C6434 /* Sources */ = {
@@ -276,6 +357,7 @@
 		};
 		18EFBFBE1FD861AB006C6434 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B7F924BB85417B6AD954A5E /* Pods-TicTrac.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -292,6 +374,7 @@
 		};
 		18EFBFBF1FD861AB006C6434 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26E79FB9D6258435901CB452 /* Pods-TicTrac.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
