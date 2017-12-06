@@ -11,7 +11,8 @@ import Alamofire
 import CoreData
 
 let urlString = "http://media.tictrac.com/tmp/users.json"
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     fileprivate var managedObjectContext : NSManagedObjectContext?
     var dataHelper = DataHelper()
     var userArray : [User] = []
@@ -19,11 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        if let appDel = UIApplication.shared.delegate as? AppDelegate {
-            self.managedObjectContext = appDel.persistentContainer.viewContext
-        } else {
-            print("We do not have access to a ManagedObjectContext")
-        }
+
         getJSON()
     }
     
@@ -49,6 +46,7 @@ class ViewController: UIViewController {
         }
         return UITableViewCell()
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //check if cell is expanded
         // no: expand cell and show phone number also
