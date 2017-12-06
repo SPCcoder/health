@@ -11,8 +11,9 @@ import Alamofire
 import CoreData
 
 let urlString = "http://media.tictrac.com/tmp/users.json"
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateUIProtocol {
     
+    @IBOutlet weak var userTableView: UITableView!
     fileprivate var managedObjectContext : NSManagedObjectContext?
     var dataHelper = DataHelper()
     var userArray : [User] = []
@@ -20,19 +21,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        userArray = dataHelper.loadFromStore()
         getJSON()
     }
-    
+    func updateUI() {
+        self.userTableView.reloadData()
+    }
     fileprivate func getJSON() {
-        
         dataHelper.getJSONFor(urlString: urlString)
-        
         
     }
     
     //TODO: use extension for table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("self.userArray.count: \(self.userArray.count)")
         return self.userArray.count
     }
     
@@ -41,7 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.nameLabel.text = self.userArray[indexPath.row].name
             cell.emailLabel.text = self.userArray[indexPath.row].email
             cell.numberLabel.text = self.userArray[indexPath.row].number
-
+            
             return cell
         }
         return UITableViewCell()

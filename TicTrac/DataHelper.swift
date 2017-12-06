@@ -9,30 +9,47 @@
 import Foundation
 import Alamofire
 import CoreData
+protocol updateUIProtocol {
+    func updateUI()
+}
 class DataHelper {
+    
     var managedObjectContext : NSManagedObjectContext?
+    var delegate : updateUIProtocol?
+    init(){
     
-    
-    public func loadFromStore()->[User]{
-        if let appDel = UIApplication.shared.delegate as? AppDelegate {
+        if let appDel = UIApplication.shared.delegate as? AppDelegate  {
+            
             self.managedObjectContext = appDel.persistentContainer.viewContext
-        } else {
-            print("We do not have access to a ManagedObjectContext")
-            return [User]()
         }
-        //fetch objects
-        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         
-        let error = NSError()
-        do {
-            let managedObjsArray = try managedObjectContext?.fetch(fetchReq) as! [User]
-            // self.myTableView.reloadData()
-            return managedObjsArray
-        } catch {
-            print("array not populated")
-            print(error)
-            return [User]()
-        }
+    }
+    public func loadFromStore()->[User]{
+//        DispatchQueue.global(qos: .userInteractive).async {
+        var managedObjsArray : [User] = []
+            //fetch objects
+            let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            
+            let error = NSError()
+            do {
+                 managedObjsArray = try self.managedObjectContext?.fetch(fetchReq) as! [User]
+                // self.myTableView.reloadData()
+//                DispatchQueue.main.async {
+//                    return managedObjsArray
+//
+//                }
+            } catch {
+                print("array not populated")
+                print(error)
+//                DispatchQueue.main.async {
+//                    return [User]()
+//
+//                }
+                
+            }
+     //   }
+        
+        return managedObjsArray
     }
     
     public func getJSONFor(urlString : String){
@@ -42,25 +59,34 @@ class DataHelper {
             print("Executing response handler on utility queue")
             switch response.result {
             case .success:
-                print(response.result.value)
-
+                
+               // print(response.result.value)
+                
                 if let mainDict = response.result.value as? [String : Any] {
                     print(mainDict)
                     if let usersArray = mainDict["users"] as? Array<Any>{
                         print(usersArray)
                         for user in usersArray {
                             if let userD = user as? [AnyHashable: Any] {
-                            if let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: self.managedObjectContext!) as? User {
-                                newUser.name = userD["name"] as? String
-                                newUser.email = userD["email"] as? String
-                                newUser.number = userD["infos"] as? String
+                              
+                                if let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: self.managedObjectContext!) as? User {
+                                    newUser.name = userD["name"] as? String
+                                    newUser.email = userD["email"] as? String
+                                    newUser.number = userD["infos"] as? String
+                                    // try self.managedObjectContext!.save()
+                                    
                                 }
+                            }
                         }
                     }
+                    //replace any existing MOs
+                    //update UI
+                    DispatchQueue.main.async {
+                        self.delegate?.updateUI()
+
+                    }
                 }
-                //replace any existing MOs
-                //update UI
-                }
+                
             case .failure(let error):
                 print(error)
             }
