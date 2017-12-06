@@ -42,11 +42,25 @@ class DataHelper {
             print("Executing response handler on utility queue")
             switch response.result {
             case .success:
-                print("Validation Successful")
-                
+                print(response.result.value)
+
+                if let mainDict = response.result.value as? [String : Any] {
+                    print(mainDict)
+                    if let usersArray = mainDict["users"] as? Array<Any>{
+                        print(usersArray)
+                        for user in usersArray {
+                            if let userD = user as? [AnyHashable: Any] {
+                            if let newUser = NSEntityDescription.insertNewObject(forEntityName: "User", into: self.managedObjectContext!) as? User {
+                                newUser.name = userD["name"] as? String
+                                newUser.email = userD["email"] as? String
+                                newUser.number = userD["infos"] as? String
+                                }
+                        }
+                    }
+                }
                 //replace any existing MOs
                 //update UI
-                
+                }
             case .failure(let error):
                 print(error)
             }
