@@ -16,6 +16,7 @@
  - I wouldn't dream of putting in this many comments normally, but Nima said it's better to over do it and explain my thought process
  - There's no localisation set up
  - there's no README file
+ - Project set to target iOS 11, I imagine Health Lab supports older version than that
  - I ran out of time! I would have rather finished everything, but I think it would have been obvious that I spent more than 2 hours to do so - plus it would have meant I didn't follow instructions for the time limit
  */
 
