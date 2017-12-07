@@ -5,35 +5,29 @@
 //  Created by Sean on 06/12/2017.
 //  Copyright © 2017 com.spcarlin. All rights reserved.
 //
-/* TASK
- - fetch data from url  http://media.tictrac.com/tmp/users.json
- - Display the list of users with the name​ and email​ for each user. - table view
- - Tapping on a row should expand the cell to then show the phone​ ​number​ in addition to
- the name and email.
- - Bonus​ ​points​: Use a mechanism to persist the data for offline functionality. - core data
- */
-/*
- EVALUATED ON:
- The work is to be evaluated on:
- - How the data is fetched and parsed within the app
- - Frameworks used
- - Design patterns used
- - Project structure
- - UI
- - Good quality of code: readable, maintainable, structured
- */
 
+
+/* MY NOTES
+ - There's no localisation set up
+ - The DataHelper class handles update/changes to data
+ - There is more safety/error handling that needs to be done, especially in DataHelper - I wanted to use PromiseKit but it ate into time so I left it out
+ - For this project I assume the new JSON is the update to date data so delete the local data and store the new data
+ - Didn't have time to do more layout work on the UI
+ - I ran out of time!
+ */
 import UIKit
 // VC doesnt need to know about core data or Alamofire so we don't import them
 
 //Constants
 // Normally I'd put these in their own file but they're ok here for now
 let KEY_NAME = "name"
-let KEY_NUMBER = "infos"
+let KEY_NUMBER = "infos"// infos is the key in the json but I'm assuming I can call it a number as per the spec
 let KEY_EMAIL = "email"
-let KEY_USER = "user"
+let KEY_USER = "User"
 let KEY_USER_CELL = "UserCell"
+
 // MARK: -
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, updateUIProtocol {
     
     @IBOutlet weak var userTableView: UITableView!
@@ -47,7 +41,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         dataHelper.delegate = self //set VC as delegate to update the UI
-        // userArray = dataHelper.loadFromStore()
+        
         if userArray.count > 0 {
             self.userTableView.reloadData()
             
@@ -85,10 +79,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //check if cell is expanded
-        // no: expand cell and show phone number also
-        // yes : shrink cell
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // not implemented
+        //check if selected cell is expanded
+        // if no: expand cell and unhide phone number also
+        // if yes : shrink cell and hide phone number
         
     }
 }

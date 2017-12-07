@@ -80,9 +80,9 @@
 		18EFBFAA1FD861AB006C6434 /* TicTrac */ = {
 			isa = PBXGroup;
 			children = (
+				18EFBFAB1FD861AB006C6434 /* AppDelegate.swift */,
 				18EA810A1FD86B730016177C /* User+CoreDataClass.swift */,
 				18EA810B1FD86B730016177C /* User+CoreDataProperties.swift */,
-				18EFBFAB1FD861AB006C6434 /* AppDelegate.swift */,
 				18EA81101FD86D160016177C /* DataHelper.swift */,
 				18EFBFAD1FD861AB006C6434 /* ViewController.swift */,
 				18EA810E1FD86C920016177C /* UserTableViewCell.swift */,

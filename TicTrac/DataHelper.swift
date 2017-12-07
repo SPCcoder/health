@@ -20,25 +20,25 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
     
     var managedObjectContext : NSManagedObjectContext?
     var delegate : updateUIProtocol?
-    public var userArray : [User] = []
+    public var userArray : [User] = []// this is what the view controller uses to update it's own array - which is used for display
     
     init(){
         
         if let appDel = UIApplication.shared.delegate as? AppDelegate  {
             
-            self.managedObjectContext = appDel.persistentContainer.viewContext //getting the MOC here in the init stops issues 
+            self.managedObjectContext = appDel.persistentContainer.viewContext // we know we need this so we set it up asap before use in funcs
         }
         self.loadFromStore()
     }
+    
     // MARK: - Core Data
     func loadFromStore(){
         
-        var managedObjsArray : [User] = []
-        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: KEY_USER)
+        let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         
         let error = NSError()
         do {
-            self.userArray = try self.managedObjectContext?.fetch(fetchReq) as! [User]
+            self.userArray = try self.managedObjectContext?.fetch(fetchReq) as! [User] 
             
         } catch {
             print("array not populated")
@@ -91,7 +91,7 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
                                 self.deleteOldData()
                             }
                         }
-                        self.userArray.removeAll()
+                        self.userArray.removeAll()// now we have empty array ready for new data from web call
                         
                         // print("DH array count: \(self.userArray.count)")
                         
@@ -109,7 +109,7 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
                                 }
                             }
                         }
-                        print("DH array count: \(self.userArray.count)")
+                       // print("DH array count: \(self.userArray.count)")
                     }
                     
                     //update UI on main thread

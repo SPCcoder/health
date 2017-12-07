@@ -17,7 +17,7 @@ class UserTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        numberLabel.isHidden = true // we hide this and only show it once the cell is touched (not implemented)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
