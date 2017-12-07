@@ -9,12 +9,13 @@
 
 /* MY NOTES
  - There's no localisation set up
- - The DataHelper class handles update/changes to data
+ - The DataHelper class handles update/changes to data (MVC)
  - There is more safety/error handling that needs to be done, especially in DataHelper - I wanted to use PromiseKit but it ate into time so I left it out
- - For this project I assume the new JSON is the update to date data so delete the local data and store the new data
+ - For this project I assume the new JSON is the up to date data. so I delete the local data and store the new data
  - Didn't have time to do more layout work on the UI
- - I ran out of time!
+ - I ran out of time! I would have rather finished everything, but I think it would have been obvious that I spent more than 2 hours to do so - plus it would have meant I didn't follow instructions for the time limit
  */
+
 import UIKit
 // VC doesnt need to know about core data or Alamofire so we don't import them
 
@@ -32,7 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var userTableView: UITableView!
     
-    var dataHelper = DataHelper() // this class
+    var dataHelper = DataHelper() // this class manages changes/update to our data
     var userArray : [User] = [] // this will store the user's we'll display, this can be populated from the core data store or the web call
     
     // MARK: -
@@ -56,7 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func getJSON() {
-        // with bigger data, we might put up an activity indicator to let the user know the app is working on something
+        // with bigger data, we might put up an activity indicator (maybe MBProgressHUD) to let the user know the app is working on something
         dataHelper.getJSON()
         
     }

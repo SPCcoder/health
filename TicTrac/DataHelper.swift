@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Alamofire
+import Alamofire// this project only uses 1 Alamofire func, so it's not a great time saver for this project - though the code is a bit cleaner and of course its there to use if we want to add more functionality in future. I also thought it would be good to demo pods in a workspace
 import CoreData
 
 protocol updateUIProtocol { // we're using this as an easy way to update the UI in our VC
@@ -28,7 +28,7 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
             
             self.managedObjectContext = appDel.persistentContainer.viewContext // we know we need this so we set it up asap before use in funcs
         }
-        self.loadFromStore()
+        self.loadFromStore()// we do the load in the init because we want the stored data asap after the user opens the app
     }
     
     // MARK: - Core Data
@@ -45,8 +45,6 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
             print(error)
             
         }
-        
-        
     }
     
     func deleteOldData(){
@@ -70,6 +68,7 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
     public func getJSON(){
         let utilityQueue = DispatchQueue.global(qos: .utility)
         
+        // so we run our request on the utility queue, which is recommended for network calls
         Alamofire.request(urlString).responseJSON(queue: utilityQueue) { response in
             // print("Executing response handler on utility queue")
             switch response.result {
@@ -82,15 +81,11 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
                     if let usersArray = mainDict["users"] as? Array<Any>{
                         //print(usersArray)
                         
-                        /*Since CRUD is not in the spec, we'll assume the json always
+                        /* Since CRUD is not in the spec, we'll assume the json always
                          gives us the most up to date version of the users,
                          so we delete the ones stored locally */
-                        for userMO in self.userArray {
-                            if let managedObject = userMO as? NSManagedObject {
-                                
-                                self.deleteOldData()
-                            }
-                        }
+                       
+                        self.deleteOldData()
                         self.userArray.removeAll()// now we have empty array ready for new data from web call
                         
                         // print("DH array count: \(self.userArray.count)")
@@ -121,6 +116,7 @@ class DataHelper { // this class helps clean up the view controller. I didn't ha
                 
             case .failure(let error):
                 print(error)
+                // here we would want to tell the user that we can not update their user list
             }
         }
     }
