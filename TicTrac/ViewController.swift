@@ -7,12 +7,15 @@
 //
 
 
-/* MY NOTES
- - There's no localisation set up
+/* MY NOTES - PLEASE READ
+
  - The DataHelper class handles update/changes to data (MVC)
  - There is more safety/error handling that needs to be done, especially in DataHelper - I wanted to use PromiseKit but it ate into time so I left it out
  - For this project I assume the new JSON is the up to date data. so I delete the local data and store the new data
  - Didn't have time to do more layout work on the UI
+ - I wouldn't dream of putting in this many comments normally, but Nima said it's better to over do it and explain my thought process
+ - There's no localisation set up
+ - there's no README file
  - I ran out of time! I would have rather finished everything, but I think it would have been obvious that I spent more than 2 hours to do so - plus it would have meant I didn't follow instructions for the time limit
  */
 
