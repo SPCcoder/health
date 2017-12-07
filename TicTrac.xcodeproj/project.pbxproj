@@ -59,6 +59,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		18EA81121FD8BD610016177C /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				18EA810A1FD86B730016177C /* User+CoreDataClass.swift */,
+				18EA810B1FD86B730016177C /* User+CoreDataProperties.swift */,
+				18EFBFB21FD861AB006C6434 /* TicTrac.xcdatamodeld */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		18EFBF9F1FD861AB006C6434 = {
 			isa = PBXGroup;
 			children = (
@@ -81,16 +91,14 @@
 			isa = PBXGroup;
 			children = (
 				18EFBFAB1FD861AB006C6434 /* AppDelegate.swift */,
-				18EA810A1FD86B730016177C /* User+CoreDataClass.swift */,
-				18EA810B1FD86B730016177C /* User+CoreDataProperties.swift */,
-				18EA81101FD86D160016177C /* DataHelper.swift */,
 				18EFBFAD1FD861AB006C6434 /* ViewController.swift */,
 				18EA810E1FD86C920016177C /* UserTableViewCell.swift */,
 				18EFBFAF1FD861AB006C6434 /* Main.storyboard */,
-				18EFBFB51FD861AB006C6434 /* Assets.xcassets */,
 				18EFBFB71FD861AB006C6434 /* LaunchScreen.storyboard */,
 				18EFBFBA1FD861AB006C6434 /* Info.plist */,
-				18EFBFB21FD861AB006C6434 /* TicTrac.xcdatamodeld */,
+				18EFBFB51FD861AB006C6434 /* Assets.xcassets */,
+				18EA81101FD86D160016177C /* DataHelper.swift */,
+				18EA81121FD8BD610016177C /* Core Data */,
 			);
 			path = TicTrac;
 			sourceTree = "<group>";
